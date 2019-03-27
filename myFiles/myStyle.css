@@ -1,0 +1,60 @@
+.myButton{
+    width: 160px;
+    height: 40px;
+}
+
+.myAlert{
+    text-align: center;
+}
+
+.head{
+    margin : 0px;
+    height: 150px;
+    background: white;
+}
+
+.foot{
+    margin: 50px;
+    width: 90%;
+}
+
+.logo{
+    margin: 30px;
+}
+
+.acceuil, .adding, .showing{
+    margin: 70px;
+    background: lightgray;
+    height: 600px;
+}
+
+li a{
+    border: 1px solid black;
+    margin: 5px;
+}
+
+.mynav{
+    margin: 70px;
+    background: lightskyblue;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.editid, .deleteid{
+    margin-left: 100px;
+    display: none;
+}
+
+strong{
+    color: darkgoldenrod;
+}
+
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #efefef;
+    text-align: center;
+}

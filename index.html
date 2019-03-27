@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Firebase PROJECT - Youssef TAMAHMACHTE</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="myFiles/myStyle.css">
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+
+
+</head>
+<body style="background: lightgray">
+    <div class="col-md-12 head">
+        <div class="logo">
+            <img src="img/logo.png" alt="Logo">
+        </div>
+    </div>
+
+
+    <div class="col-md-12">
+        <div class="col-md-4" >
+            <ul class="nav nav-pills nav-stacked mynav well">
+                <li><a href="#" id="btnaccueil">Accueil</a></li>
+                <li><a href="#" id="btnadd">Ajouter un contact</a></li>
+                <li><a href="#" id="btnshow">Afficher les contacts</a></li>
+            </ul>
+        </div>
+
+        <div class="col-md-6 acceuil">
+            <div class="myAlert">
+                <div class="well">
+                    <div class="alert alert-info">
+                        <h2>GESTION DES CONTACTS</h2>
+                    </div>
+                    <br><br>
+                    <h4>
+                        <p>Ce site web permet de gérer les contacts : Ajouter, supprimer, modifier un contact</p>
+                        <p>Ce site est créé using <strong>JQuery</strong>, <strong>JS</strong>, <strong>HTML</strong>, <strong>Bootstrap</strong>, <strong>CSS</strong> & <strong>FireBase</strong></p>
+                    </h4>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 adding">
+            <div class="addcontact">
+                <div class="form-horizontal">
+                    <div class="alert alert-info">
+                        <h2>Veuillez remplir ce formulaire : </h2>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="lastName">Nom :</label>
+                        <div class="col-sm-10 lname">
+                            <input type="text" class="form-control" id="lastName" placeholder="Entrer le nom">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="firstName">Prenom :</label>
+                        <div class="col-sm-10 fname">
+                            <input type="text" class="form-control" id="firstName" placeholder="Entrer le prenom">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="email">Email:</label>
+                        <div class="col-sm-10 lemail">
+                            <input type="email" class="form-control" id="email" placeholder="Enter l'adresse mail">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="tel">Telephone:</label>
+                        <div class="col-sm-10 ltel">
+                            <input type="email" class="form-control" id="tel" placeholder="Entrer le numero">
+                        </div>
+                    </div>
+                    <br>
+                    <br><br>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary myButton">Valider</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="addmessage">
+                <div class="alert alert-info">
+                    <h2>Alert! </h2>
+                </div>
+                <div class="alert alert-success">
+                    <h4>
+                        Ce contact a été bien ajouté.
+                    </h4><br>
+                    <button class="btn btn-default gotoaffiche">Afficher les contacts</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 showing">
+            <div class="show1">
+                <div class="alert alert-info">
+                    <h2>Liste des contacts </h2>
+                </div>
+                <table class="table table-hover" style="font-size: 16px;">
+                    <thead>
+                    <tr class="trCondition" style="color: #a94442;">
+                        <th>Prenom</th>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Tel</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="well deletemessage">
+                <div class="alert alert-info">
+                    <h2>Alert! </h2>
+                </div>
+                <div class="alert alert-success">
+                    <h4>
+                        Ce contact a été bien supprimé.
+                    </h4>
+                    <br>
+                    <button class="btn btn-default gotoaffiche">Afficher les contacts</button>
+                </div>
+            </div>
+            <div class="well updatemessage">
+                <div class="alert alert-info">
+                    <h2>Alert! </h2>
+                </div>
+                <div class="alert alert-success">
+                    <h4>
+                        Ce contact a été bien modifié.
+                    </h4><br>
+                    <button class="btn btn-default gotoaffiche">Afficher les contacts</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="editid"></div>
+    <div class="deleteid"></div>
+
+    <div class="footer-copyright ">
+        <div class="text-muted">
+            <span class="footer alert alert-warning">©2017 GLSID Copyright. Developed by <a href="https://www.fb.com/ussefshahid" target="_blank"> Youssef TAMAHMACHTE </a></span>
+
+        </div>
+    </div>
+
+
+<script src="myFiles/jquery-3.2.1.min.js"></script>
+<script src="myFiles/bootstrap.js"></script>
+<script src="myFiles/myScript.js"></script>
+<script src="myFiles/firebase.js"></script>
+
+    <script>
+        var data = { firstName: 'Youssef', LastName: 'TAMAHMACHTE', Email:"tamahmachtey@gmail.com", Tel:'0650451824' };
+        var MyPath = firebase.database().ref('Personne/'+1);
+        MyPath.set(data)
+            .then(function() {
+                console.log('succeeded');
+            })
+            .catch(function(error) {
+                console.log("failed: " + error.message);
+            });
+
+
+        function editer() {
+            var id = document.querySelector(".editid").innerHTML;
+            var ref = firebase.database().ref('Personne/'+id);
+
+            ref.on("value", function(snapshot) {
+                var data=snapshot.val();
+                var key = Object.keys(data);
+
+                    var j = key;
+                    var fname = data.firstName;
+                    var lname = data.LastName;
+                    var email = data.Email;
+                    var tele = data.Tel;
+
+                    document.querySelector("#firstName1").value = fname;
+                    document.querySelector("#lastName1").value = lname;
+                    document.querySelector("#email1").value = email;
+                    document.querySelector("#tel1").value = tele;
+            }, function (error) {
+                console.log("Error: " + error.code);
+            });
+
+
+            /*var editid = document.querySelector(".editid").innerHTML;
+            var data = { firstName: 'Youssef', LastName: 'TAMAHMACHTE', Email:'test@test.com', Tel:7011223344};
+
+            var MyPath = firebase.database().ref('Personne/'+ editid);
+            MyPath.update(data).then(function() {
+                console.log(' succeeded');
+            })
+                .catch(function(error) {
+                    console.log(' failed' + error.message);
+                });
+            */
+        }
+
+        function deleter(){
+            var editid = document.querySelector(".deleteid").innerHTML;
+            var MyPath = firebase.database().ref('Personne/'+editid);
+
+            MyPath.remove().then(function() {
+                console.log("Remove succeeded.");
+            }).catch(function(error) {
+                    console.log("Remove failed: " + error.message);
+             });
+
+            document.querySelector(".show1").style.display = 'none';
+            document.querySelector(".deletemessage").style.display = 'block';
+            document.querySelector(".updatemessage").style.display = 'none';
+        }
+
+        function edit() {
+            var ID = document.querySelector(".editid").innerHTML;
+            var firstName = document.querySelector("#firstName1").value;
+            var lastName = document.querySelector("#lastName1").value;
+            var email = document.querySelector("#email1").value;
+            var tele = document.querySelector("#tel1").value;
+
+            var data = {firstName: firstName, LastName: lastName, Email: email, Tel: tele};
+            var MyPath = firebase.database().ref('Personne/' + ID);
+            MyPath.update(data).then(function () {
+                console.log(' succeeded');
+            })
+                .catch(function (error) {
+                    console.log(' failed' + error.message);
+                });
+
+            document.querySelector(".show1").style.display = 'none';
+            document.querySelector(".deletemessage").style.display = 'none';
+            document.querySelector(".updatemessage").style.display = 'block';
+        }
+
+    </script>
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Veuillez modifier les champs que vous voulez :</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="lastName">Nom :</label>
+                            <div class="col-sm-10 lname">
+                                <input type="text" class="form-control" id="lastName1" placeholder="Entrer le nom">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="firstName">Prenom :</label>
+                            <div class="col-sm-10 fname">
+                                <input type="text" class="form-control" id="firstName1" placeholder="Entrer le prenom">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="email">Email:</label>
+                            <div class="col-sm-10 lemail">
+                                <input type="email" class="form-control" id="email1" placeholder="Enter l'adresse mail">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="tel">Telephone:</label>
+                            <div class="col-sm-10 ltel">
+                                <input type="email" class="form-control" id="tel1" placeholder="Entrer le numero">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button onclick="edit()" type="submit" class="btn btn-primary myButton1" data-dismiss="modal">Valider</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
